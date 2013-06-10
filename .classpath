@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-bundle-1.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-multipart-1.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-simple-server-1.9.1.jar"/>
+	<classpathentry kind="lib" path="lib/jsr311-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/grizzly-servlet-webserver-1.9.36.jar"/>
+	<classpathentry kind="lib" path="lib/jersey-grizzly-1.10.jar"/>
+	<classpathentry kind="lib" path="lib/mimepull-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-1.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/ws-commons-util-1.0.2.jar"/>
+	<classpathentry kind="lib" path="lib/json_simple-1.1.jar"/>
+	<classpathentry kind="con" path="gov.nasa.jpl.magicdraw.CLASSPATH_LIB_CONTAINER/,lib/,lib/graphics/,lib/webservice/,plugins/com.nomagic.magicdraw.automaton/,plugins/com.nomagic.magicdraw.automaton/engines/,plugins/com.nomagic.magicdraw.automaton/engines/beanshell/,plugins/com.nomagic.magicdraw.automaton/engines/groovy-1.7.10/,plugins/com.nomagic.magicdraw.automaton/engines/groovy-1.7.10/embeddable/,plugins/com.nomagic.magicdraw.automaton/engines/groovy-1.7.10/lib/,plugins/com.nomagic.magicdraw.automaton/help/,plugins/com.nomagic.magicdraw.automaton/lib/,plugins/com.nomagic.magicdraw.automaton/resources/,plugins/com.nomagic.magicdraw.contentdiagram/,plugins/com.nomagic.magicdraw.dependencymatrix/,plugins/com.nomagic.magicdraw.dependencymatrix/resources/,plugins/com.nomagic.magicdraw.diagramtable/,plugins/com.nomagic.magicdraw.jpython/,plugins/com.nomagic.magicdraw.jpython/jython2.5.1/,plugins/com.nomagic.magicdraw.jpython/jython2.5.1/Lib/,plugins/com.nomagic.magicdraw.jpython/jython2.5.1/Lib/test/,plugins/com.nomagic.magicdraw.jpython/jython2.5.1/Lib/test/bug1126/,plugins/com.nomagic.magicdraw.reportwizard/,plugins/com.nomagic.magicdraw.reportwizard/extensions/,plugins/com.nomagic.magicdraw.reportwizard/help/,plugins/com.nomagic.magicdraw.reportwizard/lib/,plugins/com.nomagic.magicdraw.reportwizard/resources/,plugins/gov.nasa.jpl.mbee.docgen/,plugins/gov.nasa.jpl.mbee.docgen/lib/,plugins/gov.nasa.jpl.mbee.docgen/lib/test"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

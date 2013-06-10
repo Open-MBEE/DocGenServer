@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/MDServer/src/gov/nasa/jpl/mbee/mdserver/CommandLineServer.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="gov.nasa.jpl.mbee.mdserver.CommandLineServer"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="/Users/dlam/Documents/workspace/MDServer/resources/config.properties"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="MDServer"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx1500M &#10;-XX:PermSize=60M &#10;-XX:MaxPermSize=200M &#10;-Xdock:name=MagicDraw &#10;-Xdock:icon=&quot;${MD}/bin/app.icns&quot;&#10;-Dinstall.root=&quot;${MD}&quot;&#10;-Dlauncher.properties.file=&quot;$MD/bin/mduml.properties&quot;&#10;-DLOCALCONFIG=true"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${MD}"/>
+</launchConfiguration>

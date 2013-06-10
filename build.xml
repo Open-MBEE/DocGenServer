@@ -1,0 +1,78 @@
+<project name="MDServer" default="build" basedir=".">
+  <description>
+     build file for docgen plugin.
+  </description>
+  <!-- set global properties for this build -->
+  <!-- <property name="md" location="${mdpath}"/> -->
+  <property name="md" location="/Applications/MagicDraw UML 17.0.2"/>
+  <property name="src" location="src"/>
+  <property name="lib" location="lib"/>
+  <property name="dist" location="dist"/>
+  <property name="build" location="build"/>
+	<property name="resources" location="resources"/>
+	<property name="build.classes" location="${build}/classes"/>
+	<property name="build.dist" location="${build}/dist"/>
+
+  <path id="mdclasspath">
+     <fileset dir="${md}/lib">
+		<include name="*.jar"/>
+	</fileset>
+	<fileset dir="${md}/plugins/com.nomagic.magicdraw.reportwizard/lib">
+		<include name="magicreport.jar"/>
+	</fileset>
+  	<fileset dir="${md}/plugins/com.nomagic.magicdraw.reportwizard">
+  		<include name="*.jar"/>
+  	</fileset>
+  	<fileset dir="${md}/plugins/gov.nasa.jpl.mbee.docgen">
+  		<include name="*.jar"/>
+  	</fileset>
+  	<fileset dir="${lib}" includes="*.jar"/>
+  </path>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <mkdir dir="${build}"/>
+  	<mkdir dir="${build.classes}"/>
+  	<mkdir dir="${build.dist}"/>
+  </target>
+
+  <target name="compile" depends="init"
+        description="compile the java files" >
+    <javac
+        verbose="false"
+        debug="on"
+        deprecation="on"
+        srcdir="${src}"
+        destdir="${build.classes}">
+        <classpath refid="mdclasspath"/>			
+    </javac>
+  </target>
+
+  <target name="jar" depends="compile">
+    <jar destfile="${build.dist}/docgenserver1701.jar" basedir="${build.classes}"/>
+  </target>
+
+  <target name="build" depends="jar">
+  	<copy todir="${build.dist}/lib">
+  	  	 <fileset dir="${lib}"/>
+  	  </copy>
+  	<copy todir="${build.dist}">
+  		<fileset dir="${resources}"/>
+  	</copy>
+  	<copy todir="${build.dist}/xsl">
+  		<fileset dir="xsl"/>
+  	</copy>
+  </target>
+  
+	<target name="dist" depends="build">
+		<zip destfile="${dist}/docgen-server.zip" basedir="${build.dist}"/>
+	</target>
+			
+	<target name="clean">
+		<delete dir="${dist}"/>
+		<delete dir="${build}"/>
+	</target>
+	
+	
+</project>

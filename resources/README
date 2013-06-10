@@ -1,0 +1,21 @@
+This package contains the server part of the docweb service. 
+This will start up a rest server embedded within magicdraw, and process requests in order.
+
+To set this up, you'll need to have Magicdraw 17 installed (as of this writing, I'm using Nick's july 8 imce package, which sets DLOCALCONFIG=false so the md log files will be created in the installation dir and not user home dir), the DocGen plugin installed (17.0.79 as of this writing), and whatever other plugins/profiles the projects to be generated will depend on.
+
+1. Open magicdraw in a gui as the user that the service will run as. Install all relevant plugins, choose autologin to the floating server when prompted, and make sure that any first time install pop ups/auto load things are taken care of. 
+2. close magicdraw
+3. you will need to install and run xvfb so there's a null display magicdraw can connect to when in headless mode on a server. (installation not covered here)
+4. edit config.properties
+	- tempDir is the directory temporary files will be generated to (with no trailing /)
+	- user and password is a user who have read access to projects on the md teamwork server
+	- server and port refer to md teamwork server
+	- serviceport is the port the service will run on 
+	- docweb is the address of the docweb upload url, this will be whereever you hosted docweb with "/upload/" added to the end
+   
+5. edit mdserver.sh at the top, change MD to point to your magicdraw installation directory, you can change memory allocation at the bottom 
+6. run the server by issuing: ./mdserver.sh config.properties (there will be log output to stdout on memory usage, redirect to a file if needed)
+	You should see a printout of your config options, Starting Magicdraw, Starting Server, then Server Started messages. It may take a couple of minutes to see Server Started, depending on how fast magicdraw loads on your machine. If you never see "Server Started", something is wrong. You can look at the magicdraw md.log for clues.
+
+There's a memory leak in magicdraw that requires a restart of the server every so often. If a project is taking too long to generate, it's probably out of memory. the included mdserver.sh starts magicdraw with 4 gb of heap, increase as needed.
+There's also a restart.sh script that can be used with cron to just restart the server every few days. This needs to be edited to where you put this package.
