@@ -1,5 +1,5 @@
 #!/bin/bash
-MD="/Applications/MagicDraw UML 17.0"
+MD="/Applications/MagicDraw UML 17.0.2"
 
 #export DISPLAY=localhost:1.0
 
@@ -32,34 +32,31 @@ SCRIPTDIR=`dirname "$PRG"`
 SCRIPTDIR=`cd "$SCRIPTDIR" && pwd`
 echo $SCRIPTDIR
 
-
+QVT="$MD/plugins/com.nomagic.magicdraw.qvt"
+IMCE="$MD/plugins/gov.nasa.jpl.magicdraw.imce"
+IMCEQVT="$MD/plugins/gov.nasa.jpl.magicdraw.qvto.library"
 MDREPORT="$MD/plugins/com.nomagic.magicdraw.reportwizard"
 MDDOCGEN="$MD/plugins/gov.nasa.jpl.mbee.docgen"
 MDTABLE="$MD/plugins/com.nomagic.magicdraw.diagramtable"
 MDDEPEN="$MD/plugins/com.nomagic.magicdraw.dependencymatrix"
 MDLIB="$MD/lib"
-MDGLIB="$MDLIB/graphics"
-MDWLIB="$MDLIB/webservice"
 MDAUTO="$MD/plugins/com.nomagic.magicdraw.automaton"
 MDAUTOLIB="$MD/plugins/com.nomagic.magicdarw.automaton/lib"
 MDPYTHONENGINE="$MD/plugins/com.nomagic.magicdraw.jpython/jython2.5.1"
 
-MDCP=$(JARS=("$MDLIB"/*.jar); IFS=:; echo "${JARS[*]}")
-MDGCP=$(JARS=("$MDGLIB"/*.jar); IFS=:; echo "${JARS[*]}")
-MDWCP=$(JARS=("$MDWLIB"/*.jar); IFS=:; echo "${JARS[*]}")
-MDREPORTCP="$MDREPORT/reportwizard_api.jar:$MDREPORT/reportwizard.jar"
-MDREPORTLIBCP=$(JARS=("$MDREPORT/lib"/*.jar); IFS=:; echo "${JARS[*]}")
-MDREPORTEXCP=$(JARS=("$MDREPORT/extensions"/*.jar); IFS=:; echo "${JARS[*]}")
-MDTABLECP="$MDTABLE/diagramtable.jar:$MDTABLE/diagramtable_api.jar"
-MDDEPENCP="$MDDEPEN/dependencymatrix_api.jar"
+MDCP="$MDLIB/*:$MDLIB/graphics/*:$MDLIB/webservice/*"
+MDREPORTCP="$MDREPORT/*:$MDREPORT/lib/*:$MDREPORT/extensions/*"
+MDTABLECP="$MDTABLE/*"
+MDDEPENCP="$MDDEPEN/*"
 MDJYTHONCP="$MDPYTHONENGINE/jython.jar"
-MDAUTOCP=$(JARS=("$MDAUTO"/*.jar); IFS=:; echo "${JARS[*]}")
-MDAUTOLIBCP="$MDAUTOLIB/asm-3.3.jar"
-DOCGENCP="$MDDOCGEN/DocGen-plugin.jar:$MDDOCGEN/lib/jsoup-1.6.1.jar:$MDDOCGEN/lib/jgrapht-0.8.3-jdk1.6.jar"
-LOCALCP=$(JARS=("$SCRIPTDIR/lib"/*.jar); IFS=:; echo "${JARS[*]}")
+MDAUTOCP="$MDAUTO/*:$MDAUTO/lib/*"
+QVTCP="$QVT/*:$QVT/lib/*"
+IMCECP="$IMCE/lib/*"
+IMCEQVTCP="$IMCEQVT/lib/*"
+DOCGENCP="$MDDOCGEN/*:$MDDOCGEN/lib/*"
+LOCALCP="$SCRIPTDIR/lib/*"
 
-CLASSPATH="$SCRIPTDIR/docgenserver.jar:$LOCALCP:$MDLIB/patch.jar:$MDCP:$MDGCP:$MDWCP:$MDREPORTCP:$MDREPORTLIBCP:$MDREPORTEXCP:$MDDEPENCP:$MDTABLECP:$MDAUTOLIBCP:$MDAUTOCP:$MDJYTHONCP:$DOCGENCP"
+CLASSPATH="$SCRIPTDIR/docgenserver.jar:$LOCALCP:$MDLIB/patch.jar:$MDCP:$MDREPORTCP:$MDDEPENCP:$MDTABLECP:$MDAUTOCP:$MDJYTHONCP:$QVTCP:$IMCECP:$IMCEQVTCP:$DOCGENCP"
 
 MAINCLASS=gov.nasa.jpl.mbee.mdserver.CommandLineServer
-
-exec java -Xmx1500M -XX:PermSize=60M -XX:MaxPermSize=200M -Dlauncher.properties.file="$MD/bin/mduml.properties" -DLOCALCONFIG=true -Dinstall.root="$MD" -cp "$CLASSPATH" $MAINCLASS "$1"
+exec java -Xmx1500M -XX:PermSize=60M -XX:MaxPermSize=200M -Dlauncher.properties.file="$MD/bin/mduml.properties" -DLOCALCONFIG=false -Dinstall.root="$MD" -cp "$CLASSPATH" $MAINCLASS "$1"

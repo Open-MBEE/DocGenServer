@@ -11,8 +11,8 @@
 <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="gov.nasa.jpl.mbee.mdserver.CommandLineServer"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="/Users/dlam/Documents/workspace/MDServer/resources/config.properties"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="/Users/dlam/git/mdserver/resources/config.properties"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="MDServer"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx1500M &#10;-XX:PermSize=60M &#10;-XX:MaxPermSize=200M &#10;-Xdock:name=MagicDraw &#10;-Xdock:icon=&quot;${MD}/bin/app.icns&quot;&#10;-Dinstall.root=&quot;${MD}&quot;&#10;-Dlauncher.properties.file=&quot;$MD/bin/mduml.properties&quot;&#10;-DLOCALCONFIG=true"/>
-<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${MD}"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx1500M &#10;-XX:PermSize=60M &#10;-XX:MaxPermSize=200M &#10;-Xdock:name=MagicDraw &#10;-Xdock:icon=&quot;${md.install.dir}/bin/app.icns&quot;&#10;-Dinstall.root=&quot;${md.install.dir}&quot;&#10;-Dlauncher.properties.file=&quot;${md.install.dir}/bin/mduml.properties&quot;&#10;-DLOCALCONFIG=false"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${md.install.dir}"/>
 </launchConfiguration>
