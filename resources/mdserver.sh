@@ -59,4 +59,4 @@ LOCALCP="$SCRIPTDIR/lib/*"
 CLASSPATH="$SCRIPTDIR/docgenserver.jar:$LOCALCP:$MDLIB/patch.jar:$MDCP:$MDREPORTCP:$MDDEPENCP:$MDTABLECP:$MDAUTOCP:$MDJYTHONCP:$QVTCP:$IMCECP:$IMCEQVTCP:$DOCGENCP"
 
 MAINCLASS=gov.nasa.jpl.mbee.mdserver.CommandLineServer
-exec java -Xmx1500M -XX:PermSize=60M -XX:MaxPermSize=200M -Dlauncher.properties.file="$MD/bin/mduml.properties" -DLOCALCONFIG=false -Dinstall.root="$MD" -cp "$CLASSPATH" $MAINCLASS "$1"
+exec java -Xmx1500M -XX:PermSize=60M -XX:MaxPermSize=200M -Djava.io.tmpdir="$MD/tmp" -Dlauncher.properties.file="$MD/bin/mduml.properties" -DLOCALCONFIG=false -Dinstall.root="$MD" -cp "$CLASSPATH" $MAINCLASS "$1"
