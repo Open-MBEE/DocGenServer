@@ -206,7 +206,7 @@ public class Worker implements Runnable {
 	private Element findDocGen3Element(Element e, String pack) {
 		Element res = null;
 		if (pack.equals("")) {
-			if (StereotypesHelper.hasStereotype(e, DocGen3Profile.documentStereotype) || StereotypesHelper.hasStereotype(e, DocGen3Profile.documentViewStereotype)) {
+			if (StereotypesHelper.hasStereotype(e, DocGen3Profile.documentStereotype) || StereotypesHelper.hasStereotypeOrDerived(e, DocGen3Profile.documentViewStereotype)) {
 				res = e;
 			} else {
 				for (Element ee: e.getOwnedElement()) {
@@ -216,7 +216,7 @@ public class Worker implements Runnable {
 				}
 			}
 		} else {
-			if ((StereotypesHelper.hasStereotype(e, DocGen3Profile.documentStereotype) || StereotypesHelper.hasStereotype(e, DocGen3Profile.documentViewStereotype)) && ((NamedElement)e).getName().equals(pack)) {
+			if ((StereotypesHelper.hasStereotype(e, DocGen3Profile.documentStereotype) || StereotypesHelper.hasStereotypeOrDerived(e, DocGen3Profile.documentViewStereotype)) && ((NamedElement)e).getName().equals(pack)) {
 				res = e;
 			} else {
 				for (Element ee: e.getOwnedElement()) {
