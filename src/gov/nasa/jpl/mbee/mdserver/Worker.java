@@ -205,8 +205,6 @@ public class Worker implements Runnable {
     }
 	
 	private Element findDocGen3Element(Element e, String pack) {
-	    Stereotype documentView = StereotypesHelper.getStereotype(Project.getProject(e), DocGen3Profile.documentViewStereotype,
-                "Document Profile");
 		Element res = null;
 		if (pack.equals("")) {
 			if (StereotypesHelper.hasStereotype(e, DocGen3Profile.documentStereotype) || StereotypesHelper.hasStereotypeOrDerived(e, documentView)) {
