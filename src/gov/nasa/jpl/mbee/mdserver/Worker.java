@@ -54,6 +54,7 @@ import com.nomagic.uml2.ext.magicdraw.auxiliaryconstructs.mdmodels.Model;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Package;
+import com.nomagic.uml2.ext.magicdraw.mdprofiles.Stereotype;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
@@ -72,7 +73,7 @@ import javax.net.ssl.X509TrustManager;
 public class Worker implements Runnable {
 	private final static SimpleDateFormat format = new SimpleDateFormat("yyyy'-'MM'-'dd'T'HH.mm.ss");
 	private List<String> profiles;
-	
+	private Stereotype documentView;
 	private Config c;
 
 	public Worker() {
@@ -204,9 +205,11 @@ public class Worker implements Runnable {
     }
 	
 	private Element findDocGen3Element(Element e, String pack) {
+	    Stereotype documentView = StereotypesHelper.getStereotype(Project.getProject(e), DocGen3Profile.documentViewStereotype,
+                "Document Profile");
 		Element res = null;
 		if (pack.equals("")) {
-			if (StereotypesHelper.hasStereotype(e, DocGen3Profile.documentStereotype) || StereotypesHelper.hasStereotypeOrDerived(e, DocGen3Profile.documentViewStereotype)) {
+			if (StereotypesHelper.hasStereotype(e, DocGen3Profile.documentStereotype) || StereotypesHelper.hasStereotypeOrDerived(e, documentView)) {
 				res = e;
 			} else {
 				for (Element ee: e.getOwnedElement()) {
@@ -216,7 +219,7 @@ public class Worker implements Runnable {
 				}
 			}
 		} else {
-			if ((StereotypesHelper.hasStereotype(e, DocGen3Profile.documentStereotype) || StereotypesHelper.hasStereotypeOrDerived(e, DocGen3Profile.documentViewStereotype)) && ((NamedElement)e).getName().equals(pack)) {
+			if ((StereotypesHelper.hasStereotype(e, DocGen3Profile.documentStereotype) || StereotypesHelper.hasStereotypeOrDerived(e, documentView)) && ((NamedElement)e).getName().equals(pack)) {
 				res = e;
 			} else {
 				for (Element ee: e.getOwnedElement()) {
@@ -277,7 +280,7 @@ public class Worker implements Runnable {
 				return;
 			}
 			log.println(format.format(new Date()) + " [INFO] Generating docgen 3 document " + ((NamedElement)doc).getName());
-			DocumentGenerator dg = new DocumentGenerator(doc, log);
+			DocumentGenerator dg = new DocumentGenerator(doc, dv, log);
 			Document dge = dg.parseDocument();
 			//dg.printErrors(log);
 			(new PostProcessor()).process(dge);
@@ -314,7 +317,13 @@ public class Worker implements Runnable {
 	private void handleDocgen(Request r, Model m, PrintWriter log, String project, String docbookdir) {
 		log.println(format.format(new Date()) + " [INFO] Finding Document.");
 		String pack = r.getPackage();
-		List<Package> projectPackages = getProjectPackageElements(m);        
+		List<Package> projectPackages = getProjectPackageElements(m); 
+		documentView = StereotypesHelper.getStereotype(Project.getProject(m), DocGen3Profile.documentViewStereotype,
+	            "Document Profile");
+		if (documentView == null) {
+		    log.println(format.format(new Date()) + " [ERROR] Document Profile's Product stereotype not found. Aborted");
+		    return;
+		}
 		Element docgen3e = findElementForDocGen3(projectPackages, pack);
         if (docgen3e == null) {
         	log.println(format.format(new Date()) + " [ERROR] Cannot find DocGen 3 element, Aborted.");
