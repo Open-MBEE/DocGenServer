@@ -1,13 +1,13 @@
 package gov.nasa.jpl.mbee.mdserver;
 
-import gov.nasa.jpl.mgss.mbee.docgen.DocGen3Profile;
+import gov.nasa.jpl.mbee.DocGen3Profile;
 import gov.nasa.jpl.mgss.mbee.docgen.docbook.DBBook;
 import gov.nasa.jpl.mgss.mbee.docgen.docbook.DBSerializeVisitor;
 import gov.nasa.jpl.mgss.mbee.docgen.docbook.DocumentElement;
-import gov.nasa.jpl.mgss.mbee.docgen.generator.DocumentGenerator;
-import gov.nasa.jpl.mgss.mbee.docgen.generator.PostProcessor;
-import gov.nasa.jpl.mgss.mbee.docgen.model.DocBookOutputVisitor;
-import gov.nasa.jpl.mgss.mbee.docgen.model.Document;
+import gov.nasa.jpl.mbee.generator.DocumentGenerator;
+import gov.nasa.jpl.mbee.generator.PostProcessor;
+import gov.nasa.jpl.mbee.model.DocBookOutputVisitor;
+import gov.nasa.jpl.mbee.model.Document;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -270,7 +270,7 @@ public class Worker implements Runnable {
 	private void handleDocgen3(Request r, Model m, PrintWriter log, String project, String docbookdir, Element doc) {
 		try {
 			log.println(format.format(new Date()) + "[INFO] Validating docgen 3 document");
-			gov.nasa.jpl.mgss.mbee.docgen.generator.DocumentValidator dv = new gov.nasa.jpl.mgss.mbee.docgen.generator.DocumentValidator(doc);
+			gov.nasa.jpl.mbee.generator.DocumentValidator dv = new gov.nasa.jpl.mbee.generator.DocumentValidator(doc);
 			dv.validateDocument();
 			dv.printErrors(log);
 			if (dv.isFatal()) {
